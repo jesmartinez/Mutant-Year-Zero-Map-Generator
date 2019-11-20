@@ -57,7 +57,6 @@ function setFormData(){
   }
   let ruinTransaction = MutantDB.ruinsStore().getAll();
   ruinTransaction.onsuccess = function(res){
-    console.log("hola", res);
     let domDir = document.querySelector("select#ruin");
     let domTypeDir = document.querySelector("select#ruinType");
     let usedTypes = [];
@@ -84,33 +83,27 @@ function setFormData(){
       domDir.querySelector(`optgroup#type-${type}`).appendChild(ruin);
     });
   }
-  let threatTransaction = MutantDB.threatStore().getAll();
+  let threatTransaction = MutantDB.threatsStore().getAll();
   threatTransaction.onsuccess = function(res){
-    console.log("hola", res);
-    let domDir = document.querySelector("select#ruin");
-    let domTypeDir = document.querySelector("select#ruinType");
+    let domDir = document.querySelector("select#threatSelect");
     let usedTypes = [];
     res.target.result.forEach(function(e){
       let type = e.type;
       if (!usedTypes.includes(type)) {
         let domType = document.createElement("OPTGROUP");
-        domType.label = lang[clientLang].ruinType[type] ? lang[clientLang].ruinType[type] : type;
+        domType.label = lang[clientLang].threatType[type] ? lang[clientLang].threatType[type] : type;
         domType.id = "type-"+type;
         domDir.appendChild(domType);
-        let domTypeOpt = document.createElement("OPTION");
-        domTypeOpt.innerHTML = lang[clientLang].ruinType[type] ? lang[clientLang].ruinType[type] : type;
-        domTypeOpt.value = type;
-        domTypeDir.appendChild(domTypeOpt);
         usedTypes.push(type);
       }
-      let ruin = document.createElement("OPTION");
-      ruin.value = e.id;
-      ruin.innerHTML = e.name[clientLang];
-      ruin.dataset["game"] = e.game;
-      ruin.dataset["min"] = e.min;
-      ruin.dataset["max"] = e.max;
-      ruin.dataset["type"] = e.type;
-      domDir.querySelector(`optgroup#type-${type}`).appendChild(ruin);
+      let threat = document.createElement("OPTION");
+      threat.value = e.id;
+      threat.innerHTML = e.name[clientLang];
+      threat.dataset["game"] = e.game;
+      threat.dataset["min"] = e.min;
+      threat.dataset["max"] = e.max;
+      threat.dataset["type"] = e.type;
+      domDir.querySelector(`optgroup#type-${type}`).appendChild(threat);
     });
   }
 }

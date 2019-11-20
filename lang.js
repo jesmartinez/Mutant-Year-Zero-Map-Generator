@@ -22,6 +22,8 @@ window.lang = {
     Save:"Guardar",
     Cancel: "Salir",
     Clean: "Limpiar",
+    Add: "Añadir",
+    AddRandom: "Añadir aleatorio",
     CreateNewGame: "Nueva Partida",
     GExists: "Ya existe una partida con ese nombre",
     CreateNewMap: "Nuevo Mapa",
@@ -45,9 +47,9 @@ window.lang = {
     Ruin: "Ruina",
     RuinsType: "Tipo de Ruina",
     RotLevel: "Descomposición",
+    AddThreat: "Añadir Amenaza",
     ThreatLevel: "Nivel de amenaza",
-    ThreatType: "Tipo de amenaza",
-    Threat: "Amenaza",
+    Threats: "Amenaza",
     Artifacts: "Artefactos",
     Notes: "Notas",
     maps: {
@@ -56,6 +58,11 @@ window.lang = {
     ruinType: {
       basic: "Normal",
       industry: "Industrial",
+    },
+    threatType: {
+      phenomenon: "Fenómeno",
+      monster: "Monstruo",
+      humanoid: "Humanoide",
     }
   },
   en:{
@@ -64,6 +71,8 @@ window.lang = {
     Save:"Save",
     Cancel: "Cancel",
     Clean: "Clean",
+    Add: "Add",
+    AddRandom: "Add Random",
     NoGame: "No Game",
     updateClient: "Your browser is not updated.",
     Map: "Map",
@@ -91,9 +100,9 @@ window.lang = {
     Ruin: "Ruin",
     RuinsType: "Ruins Type",
     RotLevel: "Rot Level",
+    AddThreat: "Add Threat",
     ThreatLevel: "Threat Level",
-    ThreatType: "Threat Type",
-    Threat: "Threat",
+    Threats: "Threat",
     Artifacts: "Artifacts",
     Notes: "Notes",
     maps: {

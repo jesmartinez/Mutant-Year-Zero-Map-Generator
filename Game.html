@@ -35,7 +35,7 @@
             <label data-lang="Ruin">Ruin</label><select id="ruin"></select>
           </div>
           <div class="field">
-            <label data-lang="MoodElements">Mood Elements</label><button style="width: 100%">Add</button><textarea id="moodElements" rows="5"></textarea>
+            <label data-lang="MoodElements">Mood Elements</label><button style="width: 100%" data-lang="Add">Add</button><textarea id="moodElements" rows="5"></textarea>
           </div>
           <div class="field">
             <label data-lang="RotLevel">Rot Level</label> <input id="rotLevel" type="number" min="0" max="3"></>
@@ -49,10 +49,13 @@
             <input disabled="disabled" id="threatDesc" value="Fringe Zone Sectors">
           </div>
           <div class="field">
-            <label data-lang="ThreatType">Threat Type</label> <select id="threatType"></select>
+            <label data-lang="AddThreat">Add Threat</label>
+            <select id="threatSelect"></select>
+            <button type="button" name="button" data-lang="Add">Add</button>
+            <button type="button" name="button" data-lang="AddRandom">Add Random</button>
           </div>
           <div class="field double-width">
-            <label data-lang="Threat">Threat</label> <textarea id="threat" rows="5"></textarea>
+            <label data-lang="Threats">Threats</label> <textarea id="threat" rows="5"></textarea>
           </div>
           <div class="field all-width">
             <label data-lang="Artifacts">Artifacts</label> <textarea id="artifacts" rows="5"></textarea>

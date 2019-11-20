@@ -156,6 +156,12 @@ canvas{
   background-color: white;
   z-index: 2;
 }
+.field button{
+  font-weight: bold;
+  font-family: Arial, Verdana;
+  font-size: 12px;
+  margin-top: 5px;
+}
 #gameButtons{
   width: 100%;
 }
