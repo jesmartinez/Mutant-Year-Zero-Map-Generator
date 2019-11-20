@@ -6,8 +6,10 @@ window.contents = {
 
 function dbReady(){
   let gameId = +window.location.hash.substr(1);
+  console.log(gameId);
   let status = MutantDB.gamesStore().get(gameId);
   status.onsuccess = function(evt){
+    console.log(evt.target.result);
     let game = evt.target.result;
     contents.game = game;
     console.log("Game: ", game);
@@ -22,6 +24,16 @@ function dbReady(){
     status.onerror = function(){ window.location.href = "./Menu.html" }
   };
   status.onerror = function(){ window.location.href = "./Menu.html" }
+}
+
+function dices(n){
+  let result = [];
+  let i = n;
+  while (i>0) {
+    result.push(Math.floor(Math.random() * (7 - 1) + 1));
+    i--;
+  }
+  return Number(result.join(""));
 }
 
 function editZone(){
@@ -105,5 +117,41 @@ function setFormData(){
       threat.dataset["type"] = e.type;
       domDir.querySelector(`optgroup#type-${type}`).appendChild(threat);
     });
+  }
+}
+
+function randomSector(){
+  let pop = document.querySelector("#editZonePop .popBody");
+  let diceResult;
+  pop.querySelector("#explored").checked = true;
+  //TODO: SET DEFAULT NAME
+
+  //Select ruin type
+  let environment = pop.querySelectorAll("#environment option");
+  let ruinType = false;
+  diceResult = dices(2);
+
+  for (elem of environment){
+    if( diceResult >= Number(elem.dataset["min"]) && diceResult <= Number(elem.dataset["max"]) ){
+      elem.selected = true;
+      ruinType = elem.dataset["ruin"];
+      break;
+    }
+  }
+
+  if (ruinType !== false) {
+    //TODO: ADD "NONE" OPTION
+    pop.querySelector("#ruinType").value = ruinType;
+  }
+
+  //Select ruin
+  let ruinOptions = Array.prototype.slice.call(pop.querySelectorAll("#ruin option"));
+  ruinOptions = ruinOptions.filter( elem => elem.dataset["type"] === ruinType);
+  diceResult = dices(2);
+  let ruinSelected = ruinOptions.find(
+    elem => diceResult >= Number(elem.dataset["min"]) && diceResult <= Number(elem.dataset["max"])
+  );
+  if(ruinSelected){
+    ruinSelected.selected = true;
   }
 }

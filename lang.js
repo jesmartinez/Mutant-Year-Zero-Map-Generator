@@ -1,6 +1,6 @@
-var clientLang = "es";
-if (window.clientInformation.language) {
-  switch (window.clientInformation.language.slice(0, 2)){
+var clientLang = navigator.language ? navigator.language : "es-ES";
+if (clientLang) {
+  switch (clientLang.slice(0, 2)){
     case "es":
     case "ca":
     case "eu":
