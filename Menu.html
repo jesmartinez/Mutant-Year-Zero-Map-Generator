@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" manifest="mutant.appcache">
+  <head>
+    <meta charset="utf-8">
+    <title>Main Menu</title>
+    <link rel="stylesheet" href="./menu/menu.css">
+    <link rel="stylesheet" href="./newGame/newGame.css">
+    <link rel="stylesheet" href="./newMap/newMap.css">
+  </head>
+  <body>
+    <div id="MainMenu">
+      <h1 data-lang="YourSavegames">Your savegames</h1>
+      <ul id="gamesContainer">
+        <li data-lang="NoGame">No game</li>
+      </ul>
+      <button type="button" name="newGame" data-lang="NewGame" onclick="popup('newGamePop')">New Game</button>
+      <button type="button" name="newMap" data-lang="NewMap" onclick="popup('newMapPop')">New Map</button>
+    </div>
+
+    <!-- NEW GAME POPUP -->
+    <div class="popContainer">
+      <div id="newGamePop" class="popup"> <!-- Stylish this -->
+        <h1 data-lang="CreateNewGame">Create New Game</h1>
+        <label for="Gname" data-lang="Name">Name</label> <input type="text" name="Gname" id="Gname">
+        <div id="Gmap">
+          <legend data-lang="Map">Map</legend>
+          <ul id="mapList">
+
+          </ul>
+        </div>
+        <button type="button" name="button" data-lang="NewGame" onclick="saveGame();">New game</button>
+        <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
+        <label id="game-notice"></label>
+      </div>
+    </div>
+
+    <!-- NEW MAP POPUP -->
+    <div class="popContainer">
+      <div id="newMapPop" class="popup"> <!-- Stylish this -->
+        <h1 data-lang="CreateNewMap">Create New Map</h1>
+        <div id="Moptions">
+          <legend data-lang="Options">Options</legend>
+          <label for="Mname" data-lang="Name">Name</label> <input type="text" name="Mname" id="Mname" value=""><br/><br/>
+          <h3 data-lang="Grid">Grid</h3>
+          <label for="Mrows" data-lang="Rows">Rows</label> <input type="number" name="Mrows" id="Mrows" value="20">
+          <label for="Mcols" data-lang="Columns">Columns</label> <input type="number" name="Mcols" id="Mcols" value="20"><br/><br/>
+          <label for="Mcolor" data-lang="Color">Color</label> <input type="color" name="Mcolor" id="Mcolor" value="#000000">
+          <label for="Mopacity" data-lang="Opacity">Opacity</label> <input type="range" name="Mopacity" id="Mopacity" value="5" min="0" max="100">
+        </div>
+        <div id="previewContainer">
+          <img id="previewMap" src="" alt="">
+          <canvas id="mapGrid"></canvas>
+        </div>
+        <input type="file" name="map" id="inputMap" value="" onchange="getCustomMap()">
+        <button id="Mdelete" onclick="deleteActualMap();" data-lang="ChangeImage">Change image</button>
+        <br><br><br><br>
+        <button name="Save Map" onclick="saveMap();" data-lang="SaveMap">Save Map</button>
+        <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
+        <label id="map-notice"></label>
+      </div>
+    </div>
+  </body>
+  <script src="./lang.js" charset="utf-8"></script>
+  <script src="./indexedDB/db.js" charset="utf-8"></script>
+  <script src="./indexedDB/defaultContent.js" charset="utf-8"></script>
+  <script src="./menu/menu.js" charset="utf-8"></script>
+  <script src="./newGame/newGame.js" charset="utf-8"></script>
+  <script src="./newMap/newMap.js" charset="utf-8"></script>
+</html>

@@ -1,0 +1,77 @@
+@font-face {
+    font-family: titulos;
+    src: url(../fonts/big_noodle_titling.ttf);
+}
+*{
+  font-family: Arial, Verdana;
+}
+h1,h2,h3,label,legend,button{
+  font-family: titulos;
+  font-size: 1.2em;
+}
+
+.popContainer{
+  display: none;
+  position: fixed;
+  top: 0;right: 0;left: 0;bottom: 0;
+  background-color: #00000066;
+  opacity: 0;
+  transition: 0.8s opacity;
+}
+.popup{
+  overflow-y: auto;
+  max-width: 1000px;
+  margin: auto;
+  position: fixed;
+  display: block;
+  top: 0;right: 0;left: 0;bottom: 0;
+  background-color: white;
+  padding: 25px;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+.popShow{
+  display: block;
+  z-index: 101;
+  opacity: 1;
+}
+#MainMenu{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  margin: auto;
+}
+#MainMenu > *{
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+#MainMenu > h1{
+  padding: 25px;
+}
+#MainMenu > ul{
+  padding: 0;
+  margin: 25px;
+}
+#MainMenu > ul > li{
+  list-style: none;
+  border: 1px solid lightgrey;
+  text-align: left;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#MainMenu > ul > li > div > button{
+  padding: 1px;
+  border: none;
+  background-color: transparent;
+  font-size: 25px;
+}
+#MainMenu > button{
+  /* margin: 25px; */
+  width: 40%;
+}

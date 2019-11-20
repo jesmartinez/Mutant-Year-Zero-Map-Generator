@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" manifest="mutant.appcache">
+  <head>
+    <meta charset="utf-8">
+    <title>Map</title>
+  </head>
+  <link rel="stylesheet" href="./controller/game.css">
+  <body>
+    <header>
+
+    </header>
+    <main>
+      <img id="map" src="" alt="mapImage">
+      <canvas id="visitedAreas" width="0" height="0"></canvas>
+      <canvas id="squares" width="0" height="0"></canvas>
+      <canvas id="grid" width="0" height="0"></canvas>
+    </main>
+    <div id="editZonePop" class="popup">
+      <div class="popBody">
+        <h2 data-lang="EditZone">Edit zone</h2>
+        <div id="terrainSet" class="fieldset">
+          <div class="field all-width">
+            <label data-lang="Explored">Explored</label><input type="checkbox" id="explored">
+          </div>
+          <div class="field">
+            <label data-lang="ZoneName">Zone Name</label> <input id="zoneName" maxlength="42" type="text" />
+          </div>
+          <div class="field">
+            <label data-lang="Environment">Environment</label> <select id="environment"></select>
+          </div>
+          <div class="field">
+            <label data-lang="RuinsType">Ruins Type</label> <select id="ruinType"></select>
+          </div>
+          <div class="field">
+            <label data-lang="Ruin">Ruin</label><select id="ruin"></select>
+          </div>
+          <div class="field">
+            <label data-lang="MoodElements">Mood Elements</label><button style="width: 100%">Add</button><textarea id="moodElements" rows="5"></textarea>
+          </div>
+          <div class="field">
+            <label data-lang="RotLevel">Rot Level</label> <input id="rotLevel" type="number" min="0" max="3"></>
+          </div>
+        </div>
+        <div id="threatSet" class="fieldset">
+          <div class="field">
+            <label data-lang="ThreatLevel">Threat Level</label>
+            <button>-</button><button>+</button>
+            <input disabled="disabled" id="threatLevel" value="0">
+            <input disabled="disabled" id="threatDesc" value="Fringe Zone Sectors">
+          </div>
+          <div class="field">
+            <label data-lang="ThreatType">Threat Type</label> <select id="threatType"></select>
+          </div>
+          <div class="field double-width">
+            <label data-lang="Threat">Threat</label> <textarea id="threat" rows="5"></textarea>
+          </div>
+          <div class="field all-width">
+            <label data-lang="Artifacts">Artifacts</label> <textarea id="artifacts" rows="5"></textarea>
+          </div>
+        </div>
+        <div id="gameNotes" class="fieldset all-width">
+          <div class="field all-width">
+            <label data-lang="Notes">Notes</label> <textarea id="notes" rows="6"></textarea>
+          </div>
+        </div>
+        <div id="gameButtons">
+          <button name="saveB" onclick="saveGame();" data-lang="Save">Save</button><button name="cancelB" onclick="closePop();" data-lang="Cancel">Cancel</button><button name="cleanB" onclick="clearPop();" data-lang="Clean">Clean</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./lang.js" charset="utf-8"></script>
+  <script src="./indexedDB/db.js" charset="utf-8"></script>
+  <script src="./controller/game.js" charset="utf-8"></script>
+  <script src="./controller/canvas.js" charset="utf-8"></script>
+</html>

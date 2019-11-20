@@ -1,0 +1,42 @@
+#mapList {
+  position: relative;
+  min-height: 300px;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+}
+
+#mapListPrev {
+  display: none;
+  position: absolute;
+  top: 0;right: 0;left: 0;bottom: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #00000066;
+}
+
+#mapListPrev button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#mapList li:hover {
+  background-color: lightgrey;
+}
+#mapList li button {
+  margin-right: 5px;
+}
+
+.mapSelected {
+  color: white;
+  background-color: dimgrey !important;
+}
+#game-notice{
+  opacity: 0;
+  color: white;
+  transition: 0.8s opacity;
+  padding: 3px;
+  margin-left: 5px;
+}
