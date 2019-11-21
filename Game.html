@@ -38,13 +38,16 @@
             <label data-lang="MoodElements">Mood Elements</label><button style="width: 100%" data-lang="AddRandom">Add Random</button><textarea id="moodElements" rows="5"></textarea>
           </div>
           <div class="field">
-            <label data-lang="RotLevel">Rot Level</label> <input id="rotLevel" type="number" min="0" max="3"></>
+            <label data-lang="RotLevel">Rot Level</label>
+            <input id="rotLevel" type="number" min="0" max="3" value="0">
+            <input disabled="disabled" id="rotDesc" value="">
           </div>
         </div>
         <div id="threatSet" class="fieldset">
           <div class="field">
             <label data-lang="ThreatLevel">Threat Level</label>
-            <button>-</button><button>+</button>
+            <button onclick="changeThreatLevel(false);">-</button>
+            <button onclick="changeThreatLevel(true);">+</button>
             <input disabled="disabled" id="threatLevel" value="0">
             <input disabled="disabled" id="threatDesc" value="Fringe Zone Sectors">
           </div>

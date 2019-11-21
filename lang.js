@@ -63,6 +63,12 @@ window.lang = {
       phenomenon: "Fenómeno",
       monster: "Monstruo",
       humanoid: "Humanoide",
+    },
+    rotDesc: {
+      0: "Oasis de Descomposición",
+      1: "Descomposición débil 1PD/Dia",
+      2: "Área de Descomposición 1PD/Hora",
+      3: "Punto caliente de Descomposición",
     }
   },
   en:{
@@ -116,6 +122,12 @@ window.lang = {
       phenomenon: "Phenomenon",
       monster: "Monster",
       humanoid: "Humanoid",
+    },
+    rotDesc: {
+      0: "Rot Oasis",
+      1: "Weak Rot 1RP/Day",
+      2: "Rot-Heavy Area 1RP/Hour",
+      3: "Rot Hotspot",
     }
   }
 }

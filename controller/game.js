@@ -179,3 +179,21 @@ function randomMoodElements(){
   }
 
 }
+
+//BUTTONS
+document.querySelector("#rotLevel").onchange = function(){
+  document.querySelector("#rotDesc").value = lang[clientLang].rotDesc[document.querySelector("#rotLevel").value];
+}
+document.querySelector("#rotDesc").value = lang[clientLang].rotDesc[document.querySelector("#rotLevel").value];
+
+function changeThreatLevel(add){
+  let threatLevel = document.querySelector("#threatLevel");
+  let threatDescription = document.querySelector("#threatDesc");
+  let threatNumber = Number(threatLevel.value);
+  if (add && threatNumber < 3) {
+    threatLevel.value = threatNumber+1;
+  } else if (!add && threatNumber > 0) {
+    threatLevel.value = threatNumber-1;
+  }
+
+}
