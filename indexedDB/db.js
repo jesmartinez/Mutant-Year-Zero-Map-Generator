@@ -9,7 +9,7 @@ window.MutantDB = {
   gamesStore: null,
   userStore: null,
   artifactsStore: null,
-  toneElementsStore: null,
+  moodElementsStore: null,
   threatsStore: null,
   environmentStore: null,
   ruinsStore: null,
@@ -45,9 +45,9 @@ openRequest.onsuccess = function(event) {
     return transaction.objectStore("Artifacts");
   }
 
-  window.MutantDB.toneElementsStore = function(){
-    let transaction = MutantDB.db.transaction("ToneElements", "readwrite");
-    return transaction.objectStore("ToneElements");
+  window.MutantDB.moodElementsStore = function(){
+    let transaction = MutantDB.db.transaction("MoodElements", "readwrite");
+    return transaction.objectStore("MoodElements");
   }
 
   window.MutantDB.threatsStore = function(){
@@ -119,13 +119,13 @@ openRequest.onupgradeneeded = event => {
   artifactsStore.createIndex('game', 'game', { unique: false });
 
   // Create an objectsStore for tone elements
-  toneElementsStore = db.createObjectStore("ToneElements", {keyPath: 'id'});
+  moodElementsStore = db.createObjectStore("MoodElements", {keyPath: 'id'});
 
   // Create tone elements params
-  toneElementsStore.createIndex('name', 'name', { unique: false });
-  toneElementsStore.createIndex('min', 'min', { unique: false });
-  toneElementsStore.createIndex('max', 'max', { unique: false });
-  toneElementsStore.createIndex('game', 'game', { unique: false });
+  moodElementsStore.createIndex('name', 'name', { unique: false });
+  moodElementsStore.createIndex('min', 'min', { unique: false });
+  moodElementsStore.createIndex('max', 'max', { unique: false });
+  moodElementsStore.createIndex('game', 'game', { unique: false });
 
   // Create an objectsStore for Threats
   threatsStore = db.createObjectStore("Threats", {keyPath: 'id'});

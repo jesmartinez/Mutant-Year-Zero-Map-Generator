@@ -55,7 +55,7 @@ function setDefaultContents(){
     {"game":"core", "min":643, "max":666, "name":{"es":"Vuelve a tirar", "en":" Re-Roll"}},
   ];
 
-  var toneElements = [
+  var moodElements = [
     {"game":"core", "min":11, "max":11, "name":{"es":"Vagabundos", "en":"Wanderers"}},
     {"game":"core", "min":12, "max":12, "name":{"es":"Campamento", "en":"Camp"}},
     {"game":"core", "min":13, "max":13, "name":{"es":"Descanso final", "en":"Final Rest"}},
@@ -232,9 +232,9 @@ function setDefaultContents(){
     elem.id = i;
     MutantDB.artifactsStore().put(elem);
   });
-  toneElements.forEach(function(elem, i){
+  moodElements.forEach(function(elem, i){
     elem.id = i;
-    MutantDB.toneElementsStore().put(elem);
+    MutantDB.moodElementsStore().put(elem);
   });
   threats.forEach(function(elem, i){
     elem.id = i;

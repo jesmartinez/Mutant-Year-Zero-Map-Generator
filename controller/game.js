@@ -154,4 +154,28 @@ function randomSector(){
   if(ruinSelected){
     ruinSelected.selected = true;
   }
+
+  //Random rot level
+  diceResult = dices(2);
+  if (diceResult >= 11 && diceResult <= 12)
+      pop.querySelector("#rotLevel").value = 0;
+  else if (diceResult >= 13 && diceResult <= 55)
+      pop.querySelector("#rotLevel").value = 1;
+  else if (diceResult >= 56 && diceResult <= 66)
+      pop.querySelector("#rotLevel").value = 2;
+}
+
+function randomMoodElements(){
+  MutantDB.moodElementsStore().getAll().onsuccess = function(evt){
+    let textarea = document.querySelector("#moodElements");
+    let diceResult = dices(2);
+    let moodElement = evt.target.result.find( elem => diceResult >= elem.min && diceResult <= elem.max);
+    if (textarea.value === "") {
+      textarea.value = moodElement.name[clientLang];
+    } else {
+      textarea.value = textarea.value+`\r\n`+moodElement.name[clientLang];
+    }
+
+  }
+
 }
