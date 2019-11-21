@@ -47,6 +47,7 @@ function setImgAndGrid(){
         gridLines.cols[i-1] = pos;
       }
       grid.style.opacity = contents.map.opacity/100;
+      //TODO: Paint explored Zones
       initCanvas();
     }
   }

@@ -46,10 +46,8 @@
         <div id="threatSet" class="fieldset">
           <div class="field">
             <label data-lang="ThreatLevel">Threat Level</label>
-            <button onclick="changeThreatLevel(false);">-</button>
-            <button onclick="changeThreatLevel(true);">+</button>
-            <input disabled="disabled" id="threatLevel" value="0">
-            <input disabled="disabled" id="threatDesc" value="Fringe Zone Sectors">
+            <input id="threatLevel" type="number" value="0">
+            <!-- <input disabled="disabled" id="threatDesc" value="Fringe Zone Sectors"> -->
           </div>
           <div class="field">
             <label data-lang="AddThreat">Add Threat</label>
@@ -58,7 +56,7 @@
             <button type="button" name="button" data-lang="AddRandom">Add Random</button>
           </div>
           <div class="field double-width">
-            <label data-lang="Threats">Threats</label> <textarea id="threat" rows="5"></textarea>
+            <label data-lang="Threats">Threats</label> <textarea id="threats" rows="5"></textarea>
           </div>
           <div class="field all-width">
             <label data-lang="Artifacts">Artifacts</label> <textarea id="artifacts" rows="5"></textarea>
@@ -70,7 +68,7 @@
           </div>
         </div>
         <div id="gameButtons">
-          <button name="saveB" onclick="saveGame();" data-lang="Save">Save</button><button name="cancelB" onclick="closePop();" data-lang="Cancel">Cancel</button><button name="cleanB" onclick="clearPop();" data-lang="Clean">Clean</button>
+          <button name="saveB" data-lang="Save">Save</button><button name="cancelB" onclick="closePop();" data-lang="Cancel">Cancel</button><button name="cleanB" onclick="clearPop();" data-lang="Clean">Clean</button>
         </div>
       </div>
     </div>

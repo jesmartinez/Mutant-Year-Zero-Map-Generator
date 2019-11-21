@@ -40,6 +40,33 @@ function editZone(){
   let pop = document.getElementById("editZonePop");
   let zone = actualMousePosition;
   pop.classList.add("showPop");
+
+  //Get zone data
+  let zoneLocation = CAPCHARS[actualMousePosition.row-1]+(actualMousePosition.col);
+  let zoneName = document.querySelector("#zoneName");
+  console.log(actualMousePosition,CAPCHARS[actualMousePosition.row], zoneLocation);
+  document.querySelector("h2[data-lang='EditZone']").innerHTML = lang[clientLang].EditZone + ` - ${zoneLocation}`;
+  if (zoneName.value === "") {
+    zoneName.value = zoneLocation;
+  }
+  let saveB = document.querySelector("#gameButtons button[name='saveB']");
+  saveB.removeEventListener("click", saveZone);
+  saveB.addEventListener("click", saveZone.bind(actualMousePosition));
+}
+
+function saveZone(){
+  contents.game.data[this.row] = [];
+  contents.game.data[this.row][this.col] = [];
+  let zoneInputs = document.querySelectorAll("#editZonePop input, #editZonePop textarea, #editZonePop select");
+  for (input of zoneInputs) {
+    if (input.id !== "rotDesc" && input.id !== "ruinType") {
+      if (input.type && input.type === "checkbox")
+        contents.game.data[this.row][this.col][input.id]=input.checked;
+      else
+        contents.game.data[this.row][this.col][input.id]=input.value;
+    }
+  }
+  MutantDB.gamesStore().put(contents.game);
 }
 
 function closePop(){
@@ -165,6 +192,58 @@ function randomSector(){
       pop.querySelector("#rotLevel").value = 2;
 }
 
+function randomThreats(){
+  let threatLevel = Number(document.querySelector("#threatLevel").value);
+  let iterator = threatLevel;
+  while ( iterator > 0 ) {
+    let result = dices(1);
+    if (result === 1) {
+      addRandomThreat();
+    } else if (result === 6){
+      addRandomArtifact();
+    }
+    iterator--;
+  }
+}
+
+function addRandomThreat(){
+  MutantDB.threatsStore().getAll().onsuccess = function(evt){
+    let typeDiceResult = dices(1);
+    let type = "humanoid";
+    if (typeDiceResult <= 2) {
+      type = "humanoid";
+    } else if (typeDiceResult <= 5) {
+      type = "monster";
+    } else {
+      type = "phenomenon";
+    }
+    threatDiceResult = dices(2);
+    let threat = evt.target.result.find( elem => elem.type === type && threatDiceResult >= elem.min && threatDiceResult <= elem.max);
+    let domElem = document.querySelector("#threats");
+    if (domElem.value === "")
+      domElem.value = threat.name[clientLang];
+    else
+      domElem.value = domElem.value + "\n" + threat.name[clientLang];
+  }
+}
+
+function addRandomArtifact(){
+  MutantDB.artifactsStore().getAll().onsuccess = function(evt){
+    let artifactsList = evt.target.result;
+    let reRoll = artifactsList[artifactsList.length-1].min;
+    let artifactDiceResult = 0;
+    do{
+      artifactDiceResult = dices(3);
+    }while(artifactDiceResult >= reRoll)
+    let artifact = evt.target.result.find( elem => artifactDiceResult >= elem.min && artifactDiceResult <= elem.max);
+    let domElem = document.querySelector("#artifacts");
+    if (domElem.value === "")
+      domElem.value = artifact.name[clientLang];
+    else
+      domElem.value = domElem.value + "\n" + artifact.name[clientLang];
+  }
+}
+
 function randomMoodElements(){
   MutantDB.moodElementsStore().getAll().onsuccess = function(evt){
     let textarea = document.querySelector("#moodElements");
@@ -185,15 +264,3 @@ document.querySelector("#rotLevel").onchange = function(){
   document.querySelector("#rotDesc").value = lang[clientLang].rotDesc[document.querySelector("#rotLevel").value];
 }
 document.querySelector("#rotDesc").value = lang[clientLang].rotDesc[document.querySelector("#rotLevel").value];
-
-function changeThreatLevel(add){
-  let threatLevel = document.querySelector("#threatLevel");
-  let threatDescription = document.querySelector("#threatDesc");
-  let threatNumber = Number(threatLevel.value);
-  if (add && threatNumber < 3) {
-    threatLevel.value = threatNumber+1;
-  } else if (!add && threatNumber > 0) {
-    threatLevel.value = threatNumber-1;
-  }
-
-}
