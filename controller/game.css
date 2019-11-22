@@ -95,8 +95,11 @@ canvas{
   /* margin-bottom: 25px; */
   width: 50%;
 }
-.fieldset:first-of-type{
-  border-right: 1px solid lightgrey;
+.fieldset:nth-of-type(1){
+  width: calc(50% - 1px);
+}
+.fieldset:nth-of-type(2){
+  border-left: 1px solid lightgrey;
   box-sizing: border-box;
 }
 .field{
@@ -169,3 +172,9 @@ canvas{
   margin-right: 8px;
 }
 #threatDesc{ margin-top: 0 }
+#threatSelect ~ button, #artifactSelect ~ button {
+  width: 50%;
+  box-sizing: border-box;
+  margin: 0;
+  margin-top: 5px;
+}

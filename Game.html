@@ -35,7 +35,8 @@
             <label data-lang="Ruin">Ruin</label><select id="ruin"></select>
           </div>
           <div class="field">
-            <label data-lang="MoodElements">Mood Elements</label><button style="width: 100%" data-lang="AddRandom">Add Random</button><textarea id="moodElements" rows="5"></textarea>
+            <label data-lang="MoodElements">Mood Elements</label>
+            <button style="width: 100%" data-lang="AddRandom" id="addMoodElements">Add Random</button><textarea id="moodElements" rows="5"></textarea>
           </div>
           <div class="field">
             <label data-lang="RotLevel">Rot Level</label>
@@ -44,22 +45,22 @@
           </div>
         </div>
         <div id="threatSet" class="fieldset">
-          <div class="field">
+          <div class="field all-width">
             <label data-lang="ThreatLevel">Threat Level</label>
             <input id="threatLevel" type="number" value="0">
             <!-- <input disabled="disabled" id="threatDesc" value="Fringe Zone Sectors"> -->
           </div>
-          <div class="field">
-            <label data-lang="AddThreat">Add Threat</label>
+          <div class="field all-width">
+            <label data-lang="Threats">Threats</label>
             <select id="threatSelect"></select>
-            <button type="button" name="button" data-lang="Add">Add</button>
-            <button type="button" name="button" data-lang="AddRandom">Add Random</button>
-          </div>
-          <div class="field double-width">
-            <label data-lang="Threats">Threats</label> <textarea id="threats" rows="5"></textarea>
+            <button type="button" name="button" data-lang="Add">Add</button><button type="button" name="button" data-lang="AddRandom">Add Random</button>
+            <textarea id="threats" rows="5"></textarea>
           </div>
           <div class="field all-width">
-            <label data-lang="Artifacts">Artifacts</label> <textarea id="artifacts" rows="5"></textarea>
+            <label data-lang="Artifacts">Artifacts</label>
+            <select id="artifactSelect"></select>
+            <button type="button" name="button" data-lang="Add">Add</button><button type="button" name="button" data-lang="AddRandom">Add Random</button>
+            <textarea id="artifacts" rows="5"></textarea>
           </div>
         </div>
         <div id="gameNotes" class="fieldset all-width">
@@ -68,7 +69,7 @@
           </div>
         </div>
         <div id="gameButtons">
-          <button name="saveB" data-lang="Save">Save</button><button name="cancelB" onclick="closePop();" data-lang="Cancel">Cancel</button><button name="cleanB" onclick="clearPop();" data-lang="Clean">Clean</button>
+          <button name="saveB" data-lang="Save">Save</button><button name="cancelB" data-lang="Cancel">Cancel</button><button name="cleanB" data-lang="Clean">Clean</button>
         </div>
       </div>
     </div>

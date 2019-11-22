@@ -38,28 +38,47 @@ function dices(n){
 
 function editZone(){
   let pop = document.getElementById("editZonePop");
-  let zone = actualMousePosition;
+  let zoneCoord = actualMousePosition;
+  clearForm();
   pop.classList.add("showPop");
 
   //Get zone data
+  let zone;
+  try {
+    zone = contents.game.data[zoneCoord.row][zoneCoord.col];
+  } catch(e) {
+    zone = {};
+  }
+  for (var [key, value] of Object.entries(zone)) {
+    console.log(key + ' ' + value);
+    pop.querySelector(`#${key}`).value = value;
+    pop.querySelector(`#${key}`).checked = value;
+    pop.querySelector(`#${key}`).selected = value;
+  }
+  pop.querySelector("#rotLevel").onchange();
+
+  //Set default data
   let zoneLocation = CAPCHARS[actualMousePosition.row-1]+(actualMousePosition.col);
   let zoneName = document.querySelector("#zoneName");
-  console.log(actualMousePosition,CAPCHARS[actualMousePosition.row], zoneLocation);
   document.querySelector("h2[data-lang='EditZone']").innerHTML = lang[clientLang].EditZone + ` - ${zoneLocation}`;
+  //Set default name
   if (zoneName.value === "") {
     zoneName.value = zoneLocation;
   }
+
+  //Set buttons
   let saveB = document.querySelector("#gameButtons button[name='saveB']");
   saveB.removeEventListener("click", saveZone);
-  saveB.addEventListener("click", saveZone.bind(actualMousePosition));
+  saveB.addEventListener("click", saveZone.bind(zoneCoord));
 }
 
 function saveZone(){
   contents.game.data[this.row] = [];
   contents.game.data[this.row][this.col] = [];
   let zoneInputs = document.querySelectorAll("#editZonePop input, #editZonePop textarea, #editZonePop select");
+  let exclude = ["rotDesc", "ruinType", "threatSelect", "artifactSelect"]
   for (input of zoneInputs) {
-    if (input.id !== "rotDesc" && input.id !== "ruinType") {
+    if (!exclude.includes(input.id)) {
       if (input.type && input.type === "checkbox")
         contents.game.data[this.row][this.col][input.id]=input.checked;
       else
@@ -145,6 +164,49 @@ function setFormData(){
       domDir.querySelector(`optgroup#type-${type}`).appendChild(threat);
     });
   }
+  let artifactTransaction = MutantDB.artifactsStore().getAll();
+  artifactTransaction.onsuccess = function(res){
+    let domDir = document.querySelector("select#artifactSelect");
+    res.target.result.forEach(function(e){
+      let artifact = document.createElement("OPTION");
+      artifact.value = e.id;
+      artifact.innerHTML = e.name[clientLang];
+      artifact.dataset["game"] = e.game;
+      artifact.dataset["min"] = e.min;
+      artifact.dataset["max"] = e.max;
+      artifact.dataset["type"] = e.type;
+      domDir.appendChild(artifact);
+    });
+  }
+}
+
+function clearForm(){
+  let zoneInputs = document.querySelectorAll("#editZonePop input, #editZonePop textarea");
+  for (input of zoneInputs) {
+    if (input.type === "number") {
+      input.value = 0;
+    } else if(input.type === "checkbox") {
+      input.checked = false;
+    } else {
+      input.value = "";
+    }
+  }
+  zoneInputs = document.querySelectorAll("#editZonePop select");
+  for (select of zoneInputs) {
+    select.querySelector("option").selected = true;
+  }
+
+  //Set default zone name
+  let zone = actualMousePosition;
+  let zoneLocation = CAPCHARS[actualMousePosition.row-1]+(actualMousePosition.col);
+  let zoneName = document.querySelector("#zoneName");
+  zoneName.value = zoneLocation;
+
+}
+
+function cancelForm(){
+  clearForm();
+  closePop();
 }
 
 function randomSector(){
@@ -221,10 +283,18 @@ function addRandomThreat(){
     let threat = evt.target.result.find( elem => elem.type === type && threatDiceResult >= elem.min && threatDiceResult <= elem.max);
     let domElem = document.querySelector("#threats");
     if (domElem.value === "")
-      domElem.value = threat.name[clientLang];
+      domElem.value = "- "+threat.name[clientLang];
     else
-      domElem.value = domElem.value + "\n" + threat.name[clientLang];
+      domElem.value = domElem.value + "\n- " + threat.name[clientLang];
   }
+}
+
+function addSelectedThreat(){
+  let domElem = document.querySelector("#threats");
+  if (domElem.value === "")
+    domElem.value = "- "+document.querySelector("#threatSelect option:checked").innerText;
+  else
+    domElem.value = domElem.value + "\n- " + document.querySelector("#threatSelect option:checked").innerText;
 }
 
 function addRandomArtifact(){
@@ -238,10 +308,18 @@ function addRandomArtifact(){
     let artifact = evt.target.result.find( elem => artifactDiceResult >= elem.min && artifactDiceResult <= elem.max);
     let domElem = document.querySelector("#artifacts");
     if (domElem.value === "")
-      domElem.value = artifact.name[clientLang];
+      domElem.value = "- "+artifact.name[clientLang];
     else
-      domElem.value = domElem.value + "\n" + artifact.name[clientLang];
+      domElem.value = domElem.value + "\n- " + artifact.name[clientLang];
   }
+}
+
+function addSelectedArtifact(){
+  let domElem = document.querySelector("#artifacts");
+  if (domElem.value === "")
+    domElem.value = "- "+document.querySelector("#artifactSelect option:checked").innerText;
+  else
+    domElem.value = domElem.value + "\n- " + document.querySelector("#artifactSelect option:checked").innerText;
 }
 
 function randomMoodElements(){
@@ -259,8 +337,20 @@ function randomMoodElements(){
 
 }
 
-//BUTTONS
+//SET BUTTONS
+//Rot level
 document.querySelector("#rotLevel").onchange = function(){
   document.querySelector("#rotDesc").value = lang[clientLang].rotDesc[document.querySelector("#rotLevel").value];
 }
 document.querySelector("#rotDesc").value = lang[clientLang].rotDesc[document.querySelector("#rotLevel").value];
+//Mood Elements
+document.querySelector("#addMoodElements").addEventListener("click", randomMoodElements);
+//Threat
+document.querySelector("#threatSelect ~ button[data-lang='AddRandom']").addEventListener("click", addRandomThreat);
+document.querySelector("#threatSelect ~ button[data-lang='Add']").addEventListener("click", addSelectedThreat);
+//Threat
+document.querySelector("#artifactSelect ~ button[data-lang='AddRandom']").addEventListener("click", addRandomArtifact);
+document.querySelector("#artifactSelect ~ button[data-lang='Add']").addEventListener("click", addSelectedArtifact);
+//#gameButtons
+document.querySelector("#gameButtons button[name='cleanB']").addEventListener("click", clearForm);
+document.querySelector("#gameButtons button[name='cancelB']").addEventListener("click", cancelForm);

@@ -96,7 +96,7 @@ function setDefaultContents(){
 
   var threats = [
     {"game":"core", "type":"phenomenon", "min":11, "max":13, "name":{"es":"Artillería sin detonar", "en":"Unexploded Ordnance"}},
-    {"game":"core", "type":"phenomenon", "min":14, "max":15, "name":{"es":"Bajada de temperatura u ola de calor", "en":"Temperature Drop / Heat Wave"}},
+    {"game":"core", "type":"phenomenon", "min":14, "max":15, "name":{"es":"Bajada de temperatura u Ola de calor", "en":"Temperature Drop / Heat Wave"}},
     {"game":"core", "type":"phenomenon", "min":16, "max":21, "name":{"es":"Campo de inercia", "en":"Inertia Field"}},
     {"game":"core", "type":"phenomenon", "min":22, "max":23, "name":{"es":"Campo magnético", "en":"Magnetic Field"}},
     {"game":"core", "type":"phenomenon", "min":24, "max":24, "name":{"es":"Charcos de barro", "en":"Mud Puddles"}},
