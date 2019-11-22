@@ -45,16 +45,17 @@ function editZone(){
   //Get zone data
   let zone;
   try {
-    zone = contents.game.data[zoneCoord.row][zoneCoord.col];
+    zone = contents.game.data["row-"+zoneCoord.row]["col-"+zoneCoord.col];
+    for (var [key, value] of Object.entries(zone)) {
+      console.log(key + ' ' + value);
+      pop.querySelector(`#${key}`).value = value;
+      pop.querySelector(`#${key}`).checked = value;
+      pop.querySelector(`#${key}`).selected = value;
+    }
   } catch(e) {
     zone = {};
   }
-  for (var [key, value] of Object.entries(zone)) {
-    console.log(key + ' ' + value);
-    pop.querySelector(`#${key}`).value = value;
-    pop.querySelector(`#${key}`).checked = value;
-    pop.querySelector(`#${key}`).selected = value;
-  }
+
   pop.querySelector("#rotLevel").onchange();
 
   //Set default data
@@ -73,16 +74,22 @@ function editZone(){
 }
 
 function saveZone(){
-  contents.game.data[this.row] = [];
-  contents.game.data[this.row][this.col] = [];
+  this.row = "row-"+this.row;
+  this.col = "col-"+this.col;
+  if (!contents.game.data[this.row]) {
+    contents.game.data[this.row] = [];
+  }
+  if (!contents.game.data[this.row][this.col]) {
+    contents.game.data[this.row][this.col] = [];
+  }
   let zoneInputs = document.querySelectorAll("#editZonePop input, #editZonePop textarea, #editZonePop select");
   let exclude = ["rotDesc", "ruinType", "threatSelect", "artifactSelect"]
   for (input of zoneInputs) {
     if (!exclude.includes(input.id)) {
       if (input.type && input.type === "checkbox")
-        contents.game.data[this.row][this.col][input.id]=input.checked;
+        contents.game.data[this.row][this.col][input.id] = input.checked;
       else
-        contents.game.data[this.row][this.col][input.id]=input.value;
+        contents.game.data[this.row][this.col][input.id] = input.value;
     }
   }
   MutantDB.gamesStore().put(contents.game);
