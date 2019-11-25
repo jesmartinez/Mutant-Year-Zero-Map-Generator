@@ -78,11 +78,17 @@ function saveZone(evt){
   let zoneCoord = evt.target.zoneCoord;
   zoneCoord.row = "row-"+zoneCoord.row;
   zoneCoord.col = "col-"+zoneCoord.col;
+  if (!contents.game.data || contents.game.data.length === 0) {
+    console.log("hola 0", contents.game.data);
+    contents.game.data = {};
+  }
   if (!contents.game.data[zoneCoord.row]) {
-    contents.game.data[zoneCoord.row] = [];
+    console.log("hola 1", zoneCoord.row);
+    contents.game.data[zoneCoord.row] = {};
   }
   if (!contents.game.data[zoneCoord.row][zoneCoord.col]) {
-    contents.game.data[zoneCoord.row][zoneCoord.col] = [];
+    console.log("hola 2", zoneCoord.row, zoneCoord.col);
+    contents.game.data[zoneCoord.row][zoneCoord.col] = {};
   }
   let zoneInputs = document.querySelectorAll("#editZonePop input, #editZonePop textarea, #editZonePop select");
   let exclude = ["rotDesc", "ruinType", "threatSelect", "artifactSelect"]

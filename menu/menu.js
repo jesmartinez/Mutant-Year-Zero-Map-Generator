@@ -49,7 +49,7 @@ function reloadGameList(){ //RELOAD GAME LIST AND BUILD "LI" GAME SLOTS
         li.ondblclick = openGame;
 
         let gameButtons = document.createElement("DIV");
-        gameButtons.id = "gameButtons";
+        gameButtons.classList.add("gameButtons");
 
         let deleteB = document.createElement("BUTTON");
         deleteB.innerHTML = "&#x1f5d1;"
@@ -75,11 +75,13 @@ function reloadGameList(){ //RELOAD GAME LIST AND BUILD "LI" GAME SLOTS
           }
         };
         let renameB = document.createElement("BUTTON");
-        renameB.innerHTML = "&#x270E;"
+        renameB.innerHTML = "&#x270E;";
         renameB.onclick = renameGame; //TODO: RENAME FUNCTION
         let downloadB = document.createElement("BUTTON");
-        downloadB.innerHTML = "&#x23ec;"
-        downloadB.onclick = undefined; //TODO: DOWNLOAD JSON FUNCTION (AND IMPORT)
+        downloadB.innerHTML = "&#x23ec;";
+        downloadB.gameId = game.id;
+        downloadB.gameName = game.name;
+        downloadB.onclick = downloadGame; //TODO: DOWNLOAD JSON FUNCTION (AND IMPORT)
 
         gameButtons.appendChild(renameB);
         gameButtons.appendChild(duplicateB);
@@ -94,6 +96,19 @@ function reloadGameList(){ //RELOAD GAME LIST AND BUILD "LI" GAME SLOTS
   }
   status.onerror = function(evt){
     container.innerHTML = '<li data-lang="NoGame">'+window.lang[clientLang]["NoGame"]+'</li>'
+  }
+}
+
+function downloadGame(evt){
+  let gameId = Number(evt.target.gameId);
+  let gameName = evt.target.gameName;
+  MutantDB.gamesStore().get(gameId).onsuccess = function(transaction){
+    window.test = transaction.target.result;
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(transaction.target.result));
+    var dlAnchorElem = document.createElement('A');
+    dlAnchorElem.setAttribute("href", dataStr);
+    dlAnchorElem.setAttribute("download", gameId+"-"+gameName+".json");
+    dlAnchorElem.click();
   }
 }
 
