@@ -36,7 +36,7 @@
 
     <!-- NEW MAP POPUP -->
     <div class="popContainer">
-      <div id="newMapPop" class="popup"> <!-- Stylish this -->
+      <div id="newMapPop" class="popup">
         <h1 data-lang="CreateNewMap">Create New Map</h1>
         <div id="Moptions">
           <legend data-lang="Options">Options</legend>
@@ -57,6 +57,21 @@
         <button name="Save Map" onclick="saveMap();" data-lang="SaveMap">Save Map</button>
         <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
         <label id="map-notice"></label>
+      </div>
+    </div>
+
+    <!-- NEW MAP POPUP -->
+    <div class="popContainer">
+      <div id="renamePop" class="popup">
+        <h1 data-lang="RenameMap">Rename Game</h1>
+        <span id="gameToRename"></span>
+        <div id="renameInput">
+          <br/>
+          <input type="text" placeholder="New Name" value="">
+          <br/><br/>
+          <button data-lang="Change">Change</button>
+          <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
+        </div>
       </div>
     </div>
   </body>

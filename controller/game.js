@@ -69,27 +69,29 @@ function editZone(){
 
   //Set buttons
   let saveB = document.querySelector("#gameButtons button[name='saveB']");
+  saveB.zoneCoord = zoneCoord;
   saveB.removeEventListener("click", saveZone);
-  saveB.addEventListener("click", saveZone.bind(zoneCoord));
+  saveB.addEventListener("click", saveZone);
 }
 
-function saveZone(){
-  this.row = "row-"+this.row;
-  this.col = "col-"+this.col;
-  if (!contents.game.data[this.row]) {
-    contents.game.data[this.row] = [];
+function saveZone(evt){
+  let zoneCoord = evt.target.zoneCoord;
+  zoneCoord.row = "row-"+zoneCoord.row;
+  zoneCoord.col = "col-"+zoneCoord.col;
+  if (!contents.game.data[zoneCoord.row]) {
+    contents.game.data[zoneCoord.row] = [];
   }
-  if (!contents.game.data[this.row][this.col]) {
-    contents.game.data[this.row][this.col] = [];
+  if (!contents.game.data[zoneCoord.row][zoneCoord.col]) {
+    contents.game.data[zoneCoord.row][zoneCoord.col] = [];
   }
   let zoneInputs = document.querySelectorAll("#editZonePop input, #editZonePop textarea, #editZonePop select");
   let exclude = ["rotDesc", "ruinType", "threatSelect", "artifactSelect"]
   for (input of zoneInputs) {
     if (!exclude.includes(input.id)) {
       if (input.type && input.type === "checkbox")
-        contents.game.data[this.row][this.col][input.id] = input.checked;
+        contents.game.data[zoneCoord.row][zoneCoord.col][input.id] = input.checked;
       else
-        contents.game.data[this.row][this.col][input.id] = input.value;
+        contents.game.data[zoneCoord.row][zoneCoord.col][input.id] = input.value;
     }
   }
   let transaction = MutantDB.gamesStore().put(contents.game)

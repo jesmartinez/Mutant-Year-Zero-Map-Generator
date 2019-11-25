@@ -11,18 +11,20 @@ function popup(pop){
 
 function closePop(){
   let pop = document.querySelector(".popShow");
-  pop.classList.remove("popShow");
-  pop.querySelectorAll("input").forEach(function(input){
-    input.value = "";
-    if (input.type == "file") {
-      input.type = "";
-      input.type = "file";
-    }
-  });
-  try {
-    closePreview();
-  }catch(e) {}
-  reloadGameList();
+  if (pop) {
+    pop.classList.remove("popShow");
+    pop.querySelectorAll("input").forEach(function(input){
+      input.value = "";
+      if (input.type == "file") {
+        input.type = "";
+        input.type = "file";
+      }
+    });
+    try {
+      closePreview();
+    }catch(e) {}
+    reloadGameList();
+  }
 }
 
 function reloadGameList(){ //RELOAD GAME LIST AND BUILD "LI" GAME SLOTS
@@ -74,7 +76,7 @@ function reloadGameList(){ //RELOAD GAME LIST AND BUILD "LI" GAME SLOTS
         };
         let renameB = document.createElement("BUTTON");
         renameB.innerHTML = "&#x270E;"
-        renameB.onclick = undefined; //TODO: RENAME FUNCTION
+        renameB.onclick = renameGame; //TODO: RENAME FUNCTION
         let downloadB = document.createElement("BUTTON");
         downloadB.innerHTML = "&#x23ec;"
         downloadB.onclick = undefined; //TODO: DOWNLOAD JSON FUNCTION (AND IMPORT)
@@ -92,6 +94,30 @@ function reloadGameList(){ //RELOAD GAME LIST AND BUILD "LI" GAME SLOTS
   }
   status.onerror = function(evt){
     container.innerHTML = '<li data-lang="NoGame">'+window.lang[clientLang]["NoGame"]+'</li>'
+  }
+}
+
+function renameGame(evt){
+  let gameId = evt.target.parentNode.parentNode.gameId;
+  let gameName = evt.target.parentNode.parentNode.firstChild.textContent;
+  let changeButton = document.querySelector("#renameInput button[data-lang='Change']");
+  document.querySelector("#gameToRename").innerHTML = gameName;
+  document.querySelector("#renameInput input").value = gameName;
+  popup("renamePop");
+  changeButton.gameId = gameId;
+  changeButton.removeEventListener("click", acceptChangeName);
+  changeButton.addEventListener("click", acceptChangeName);
+}
+
+function acceptChangeName(evt){
+  MutantDB.gamesStore().get(Number(evt.target.gameId)).onsuccess = function(evt){
+    let name = document.querySelector("#renameInput input").value;
+    if (name && name !== "") {
+      evt.target.result.name = name;
+      MutantDB.gamesStore().put(evt.target.result).onsuccess = function(){
+        closePop();
+      }
+    }
   }
 }
 
