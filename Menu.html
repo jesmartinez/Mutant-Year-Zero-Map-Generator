@@ -60,7 +60,21 @@
       </div>
     </div>
 
-    <!-- NEW MAP POPUP -->
+    <!-- IMPORT GAME POPUP -->
+    <div class="popContainer">
+      <div id="importGamePop" class="popup">
+        <h1 data-lang="ImportGame">Import Game</h1>
+        <input type="file" name="import" id="inputImport" value="" onchange="getJSONGame()">
+        <input type="text" name="" value="" id="importName">
+        <button type="button" id="iDelete" name="button" onclick="deleteActualImportGame();"></button>
+        <br><br><br><br>
+        <button name="Add" onclick="addImportGame();" data-lang="Add">Add</button>
+        <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
+        <label id="import-notice"></label>
+      </div>
+    </div>
+
+    <!-- RENAME POPUP -->
     <div class="popContainer">
       <div id="renamePop" class="popup">
         <h1 data-lang="RenameMap">Rename Game</h1>
@@ -81,4 +95,5 @@
   <script src="./menu/menu.js" charset="utf-8"></script>
   <script src="./newGame/newGame.js" charset="utf-8"></script>
   <script src="./newMap/newMap.js" charset="utf-8"></script>
+  <script src="./importGame/importGame.js" charset="utf-8"></script>
 </html>

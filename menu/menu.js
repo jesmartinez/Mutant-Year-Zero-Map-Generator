@@ -109,7 +109,7 @@ function downloadGame(evt){
     dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", gameId+"-"+gameName+".json");
     dlAnchorElem.click();
-  }
+  };
 }
 
 function renameGame(evt){

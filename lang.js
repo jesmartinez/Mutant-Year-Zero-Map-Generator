@@ -15,6 +15,7 @@ window.lang = {
   es:{
     YourSavegames: "Tus partidas",
     NewGame: "Nueva partida",
+    ImportGame: "Importar Partida",
     NoGame: "No Hay partidas",
     updateClient: "Tu navegador no está actualizado.",
     Map: "Mapa",
@@ -78,6 +79,7 @@ window.lang = {
   en:{
     YourSavegames: "Your Savegames",
     NewGame: "New Game",
+    ImportGame: "Import Game",
     Save:"Save",
     Cancel: "Cancel",
     Clean: "Clean",
