@@ -1,5 +1,6 @@
 let squares = document.getElementById("squares");
 let squaresCanvas = undefined;
+let visitedCanvas = undefined;
 let grid = document.getElementById("grid");
 let gridLines = {rows:[], cols:[]};
 let actualMousePosition = {row: 0, col: 0};
@@ -10,8 +11,10 @@ function initCanvas(){
   squares.addEventListener("click", editZone);
 
   squaresCanvas = squares.getContext('2d');
+  visitedCanvas = document.getElementById("visitedAreas").getContext('2d');
   gridLines.rows.unshift(0);
   gridLines.cols.unshift(0);
+  paintExplored();
 }
 
 function setImgAndGrid(){
@@ -47,14 +50,28 @@ function setImgAndGrid(){
         gridLines.cols[i-1] = pos;
       }
       grid.style.opacity = contents.map.opacity/100;
-      //TODO: Paint explored Zones
       initCanvas();
     }
   }
 }
 
+function paintExplored(){
+  for (var [keyRow, valueRow] of Object.entries(contents.game.data)) {
+    let rowCoord = Number(keyRow.slice(4));
+    for (var [keyCol, zone] of Object.entries(valueRow)) {
+      let colCoord = Number(keyCol.slice(4));
+      //PAINT THIS CELL
+      visitedCanvas.fillStyle = "#0cae0c";
+      visitedCanvas.fillRect(
+        gridLines.cols[colCoord-1],
+        gridLines.rows[rowCoord-1],
+        gridLines.cols[1],
+        gridLines.rows[1])
+    }
+  }
+}
+
 function moveSquares(evt){
-  // TESTS WHERE ARE YOU
   let gridPosition = {row: 0, col: 0};
   let mousePosition = getMousePosition(evt);
 
