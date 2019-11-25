@@ -26,6 +26,10 @@ function dbReady(){
   status.onerror = function(){ window.location.href = "./Menu.html" }
 }
 
+function returnToMenu(){
+  window.location.href = "./Menu.html";
+}
+
 function dices(n){
   let result = [];
   let i = n;

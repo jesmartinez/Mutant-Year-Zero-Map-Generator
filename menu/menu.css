@@ -8,6 +8,11 @@
 h1,h2,h3,label,legend,button{
   font-family: titulos;
   font-size: 1.2em;
+  letter-spacing: 0.1em;
+}
+
+body{
+  background-image: url("../resources/backgrounds/mainBG.jpg");
 }
 
 .popContainer{
@@ -49,8 +54,13 @@ h1,h2,h3,label,legend,button{
   width: 100%;
   margin: auto;
 }
+#MainMenu > img {
+  max-width: 450px;
+}
 #MainMenu > h1{
   padding: 25px;
+  font-size: 2em;
+  color: #e5e5e5;
 }
 #MainMenu > ul{
   padding: 0;
@@ -72,6 +82,24 @@ h1,h2,h3,label,legend,button{
   font-size: 25px;
 }
 #MainMenu > button{
-  /* margin: 25px; */
-  width: 40%;
+  margin: 12.5px;
+  width: calc(33.33% - 50px);
+  background-image: url("../resources/backgrounds/blackBG.jpg");
+  color: #e5e5e5;
+  border-color: #e5e5e5;
+}
+#MainMenu > button:first-of-type {
+  margin-left: 25px;
+  width: calc(33.33% - 50px);
+}
+#MainMenu > button:last-of-type {
+  margin-right: 25px;
+  width: calc(33.33% - 50px);
+}
+
+#MainMenu > ul > li {
+    background-color: #00000099;
+    color: #e5e5e5;
+    font-weight: bold;
+    margin: 7px 0;
 }
