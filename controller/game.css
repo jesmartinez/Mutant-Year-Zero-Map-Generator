@@ -181,3 +181,10 @@ canvas{
   margin: 0;
   margin-top: 5px;
 }
+#zoneMsg{
+  opacity: 0;
+  color: white;
+  transition: 0.8s opacity;
+  padding: 3px;
+  margin-left: 5px;
+}

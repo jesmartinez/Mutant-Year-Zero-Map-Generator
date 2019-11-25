@@ -92,7 +92,24 @@ function saveZone(){
         contents.game.data[this.row][this.col][input.id] = input.value;
     }
   }
-  MutantDB.gamesStore().put(contents.game);
+  let transaction = MutantDB.gamesStore().put(contents.game)
+  transaction.onsuccess = function(){
+    zonePopMsg(lang[clientLang].MSaveSuccess, "green");
+    paintExplored(); //Paint explored from canvas.js
+  };
+  transaction.onerror = function(){
+    zonePopMsg("Error", "red");
+  };
+}
+
+function zonePopMsg(msg, color){
+  let notice = document.querySelector("#zoneMsg");
+  notice.style.backgroundColor = color;
+  notice.style.opacity = 1;
+  notice.innerHTML = msg;
+  setTimeout(function(){
+    notice.style.opacity = 0;
+  }.bind(notice), 1200);
 }
 
 function closePop(){
