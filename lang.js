@@ -1,4 +1,4 @@
-var clientLang = navigator.language ? navigator.language : "es-ES";
+var clientLang = navigator.language ? navigator.language : "en-US";
 if (clientLang) {
   switch (clientLang.slice(0, 2)){
     case "es":
@@ -52,6 +52,7 @@ window.lang = {
     Threats: "Amenaza",
     Artifacts: "Artefactos",
     Notes: "Notas",
+    RollDice: "Lanzar los dados",
     maps: {
       deadapple: "La Manzana Muerta",
     },
@@ -111,6 +112,7 @@ window.lang = {
     Threats: "Threat",
     Artifacts: "Artifacts",
     Notes: "Notes",
+    RollDice: "Roll the dice",
     maps: {
       deadapple: "Dead Apple",
     },

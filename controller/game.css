@@ -165,6 +165,9 @@ canvas{
   font-size: 12px;
   margin-top: 5px;
 }
+#rollTerrain, #rollThreats{
+  width: 100%;
+}
 #gameButtons{
   width: 100%;
 }

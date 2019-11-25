@@ -256,6 +256,8 @@ function randomSector(){
 
 function randomThreats(){
   let threatLevel = Number(document.querySelector("#threatLevel").value);
+  document.querySelector("#threats").value = "";
+  document.querySelector("#artifacts").value = "";
   let iterator = threatLevel;
   while ( iterator > 0 ) {
     let result = dices(1);
@@ -338,6 +340,10 @@ function randomMoodElements(){
 }
 
 //SET BUTTONS
+//randomize
+document.querySelector("#rollTerrain").addEventListener("click", randomSector);
+document.querySelector("#rollThreats").addEventListener("click", randomThreats);
+
 //Rot level
 document.querySelector("#rotLevel").onchange = function(){
   document.querySelector("#rotDesc").value = lang[clientLang].rotDesc[document.querySelector("#rotLevel").value];

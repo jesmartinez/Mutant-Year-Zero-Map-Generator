@@ -19,8 +19,11 @@
       <div class="popBody">
         <h2 data-lang="EditZone">Edit zone</h2>
         <div id="terrainSet" class="fieldset">
-          <div class="field all-width">
+          <div class="field">
             <label data-lang="Explored">Explored</label><input type="checkbox" id="explored">
+          </div>
+          <div class="field">
+            <button id="rollTerrain" data-lang="RollDice">Roll the dice</button>
           </div>
           <div class="field">
             <label data-lang="ZoneName">Zone Name</label> <input id="zoneName" maxlength="42" type="text" />
@@ -45,10 +48,13 @@
           </div>
         </div>
         <div id="threatSet" class="fieldset">
-          <div class="field all-width">
+          <div class="field">
             <label data-lang="ThreatLevel">Threat Level</label>
             <input id="threatLevel" type="number" value="0">
             <!-- <input disabled="disabled" id="threatDesc" value="Fringe Zone Sectors"> -->
+          </div>
+          <div class="field">
+            <button id="rollThreats" data-lang="RollDice">Roll the dice</button>
           </div>
           <div class="field all-width">
             <label data-lang="Threats">Threats</label>
