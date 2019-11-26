@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./menu/menu.css">
     <link rel="stylesheet" href="./newGame/newGame.css">
     <link rel="stylesheet" href="./newMap/newMap.css">
+    <link rel="stylesheet" href="./resources/minicons/styles.css">
   </head>
   <body>
     <div id="MainMenu">
@@ -23,16 +24,19 @@
     <div class="popContainer">
       <div id="newGamePop" class="popup"> <!-- Stylish this -->
         <h1 data-lang="CreateNewGame">Create New Game</h1>
-        <label for="Gname" data-lang="Name">Name</label> <input type="text" name="Gname" id="Gname">
+        <label for="Gname" data-lang="Name">Name</label>: <input type="text" name="Gname" id="Gname">
         <div id="Gmap">
           <legend data-lang="Map">Map</legend>
           <ul id="mapList">
 
           </ul>
         </div>
-        <button type="button" name="button" data-lang="NewGame" onclick="saveGame();">New game</button>
-        <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
-        <label id="game-notice"></label>
+        <div class="buttonsFix"> </div>
+        <div class="buttonsBar">
+          <button type="button" name="button" data-lang="NewGame" onclick="saveGame();">New game</button>
+          <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
+          <label id="game-notice"></label>
+        </div>
       </div>
     </div>
 
@@ -42,7 +46,7 @@
         <h1 data-lang="CreateNewMap">Create New Map</h1>
         <div id="Moptions">
           <legend data-lang="Options">Options</legend>
-          <label for="Mname" data-lang="Name">Name</label> <input type="text" name="Mname" id="Mname" value=""><br/><br/>
+          <label for="Mname" data-lang="Name">Name</label>: <input type="text" name="Mname" id="Mname" value=""><br/><br/>
           <h3 data-lang="Grid">Grid</h3>
           <label for="Mrows" data-lang="Rows">Rows</label> <input type="number" name="Mrows" id="Mrows" value="20">
           <label for="Mcols" data-lang="Columns">Columns</label> <input type="number" name="Mcols" id="Mcols" value="20"><br/><br/>
@@ -56,9 +60,11 @@
         <input type="file" name="map" id="inputMap" value="" onchange="getCustomMap()">
         <button id="Mdelete" onclick="deleteActualMap();" data-lang="ChangeImage">Change image</button>
         <br><br><br><br>
-        <button name="Save Map" onclick="saveMap();" data-lang="SaveMap">Save Map</button>
-        <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
-        <label id="map-notice"></label>
+        <div class="buttonsBar">
+          <button name="Save Map" onclick="saveMap();" data-lang="SaveMap">Save Map</button>
+          <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
+          <label id="map-notice"></label>
+        </div>
       </div>
     </div>
 
@@ -70,9 +76,11 @@
         <input type="text" name="" value="" id="importName">
         <button type="button" id="iDelete" name="button" onclick="deleteActualImportGame();"></button>
         <br><br><br><br>
-        <button name="Add" onclick="addImportGame();" data-lang="Add">Add</button>
-        <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
-        <label id="import-notice"></label>
+        <div class="buttonsBar">
+          <button name="Add" onclick="addImportGame();" data-lang="Add">Add</button>
+          <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
+          <label id="import-notice"></label>
+        </div>
       </div>
     </div>
 

@@ -20,18 +20,37 @@
   position: absolute;
   top: 0;
   right: 0;
+  box-sizing: border-box;
+  margin: 15px 15px;
+  letter-spacing: 0;
+  padding: 5px 5px 0 5px;
+  background-image: url("../resources/backgrounds/blackBG.jpg");
+  background-size: cover;
+  color: #e5e5e5;
+  border: 1px solid #e5e5e5;
 }
-
+#mapList li{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #412726;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
 #mapList li:hover {
-  background-color: lightgrey;
+  color: #412726;
+  /* background-color: lightgrey !important; */
 }
 #mapList li button {
   margin-right: 5px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: 600;
 }
 
 .mapSelected {
-  color: white;
-  background-color: dimgrey !important;
+  /* color: white; */
+  background-color: #503635cf !important;
 }
 #game-notice{
   opacity: 0;
@@ -39,4 +58,15 @@
   transition: 0.8s opacity;
   padding: 3px;
   margin-left: 5px;
+  margin: 15px;
+}
+#newGamePop legend{padding: 0;}
+#Gname{font-size: 1.3em}
+#Gmap{margin-top: 25px}
+#Gmap #mapList{
+  color: white;
+  margin: 0;
+  padding: 15px;
+  background-color: #503635cf;
+  box-sizing: border-box;
 }

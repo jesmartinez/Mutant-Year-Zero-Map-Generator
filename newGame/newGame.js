@@ -16,8 +16,10 @@ function initNewGame(){
         map.mapId = elem.id;
         map.onclick = selectMap;
 
-        //Preview Button Element
-        previewMap.innerHTML = "&#128065";
+        //Preview Button Element edition-24
+        // previewMap.innerHTML = '<div class="icon icon-edition-24"></div>';
+        previewMap.classList.add("icon");
+        previewMap.classList.add("icon-edition-24");
         previewMap.mapImg = elem.src;
         previewMap.onclick = showPreview;
         map.appendChild(previewMap);
@@ -47,7 +49,8 @@ function showPreview(evt){
   mapContainer.style.display = "block";
 
   let closeB = document.createElement("BUTTON");
-  closeB.innerHTML = "X";
+  closeB.classList.add("icon");
+  closeB.classList.add("icon-interface-23");
   closeB.onclick = closePreview;
   // console.log(evt.target.mapImg);
   mapContainer.appendChild(closeB);
