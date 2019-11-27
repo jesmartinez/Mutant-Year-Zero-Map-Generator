@@ -5,11 +5,12 @@
   position: relative;
   padding: 10px;
   box-sizing: border-box;
+  border-bottom: none;
 }
 #inputMap::after{
   border: 2px dashed grey;
   border-radius: 10px;
-  content: "Put your map here";
+  content: "Put your image here";
   background-color: white;
   position: absolute;
   top: 0; right: 0; left: 0; bottom: 0;
@@ -64,17 +65,28 @@
   border: 1px solid grey;
   padding: 20px;
   margin-bottom: 20px;
+  background-color: #f3ae7485;
 }
 #Moptions legend{
-  margin-top: -30px;
-  margin-bottom: 10px;
-  background-color: white;
-  width: fit-content;
-  font-weight: bold;
+  background-image: url("../resources/backgrounds/mainBG.jpg");
+  background-size: cover;
+  color: #e5e5e5;
+  padding: 7px;
+  margin: -20px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+#Moptions h3{
+  border-top: 1px solid dimgray;
+  padding-top: 20px;
 }
 #Mopacity{
   display: inline-block;
   height: auto;
+}
+#Mname, #Mrows, #Mcols{
+  font-size: 1.4em;
+  margin-left: 5px;
 }
 #map-notice{
   opacity: 0;
@@ -82,4 +94,5 @@
   transition: 0.8s opacity;
   padding: 3px;
   margin-left: 5px;
+  margin: 15px;
 }

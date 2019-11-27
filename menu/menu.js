@@ -44,21 +44,26 @@ function reloadGameList(){ //RELOAD GAME LIST AND BUILD "LI" GAME SLOTS
     if (games.length > 0) {
       games.forEach(function(game){
         let li = document.createElement("LI");
-        li.innerHTML = game.name;
+        // li.innerHTML = game.name;
         li.gameId = game.id;
         li.ondblclick = openGame;
+        let label = document.createElement("DIV");
+        label.classList.add("gameLabel");
+        label.innerHTML = game.name;
+        label.gameId = game.id;
+        label.ondblclick = openGame;
 
         let gameButtons = document.createElement("DIV");
         gameButtons.classList.add("gameButtons");
 
         let deleteB = document.createElement("BUTTON");
-        deleteB.innerHTML = "&#x1f5d1;"
+        deleteB.innerHTML = '<div class="icon icon-edition-41"></div>';
         deleteB.onclick = function(){
           removeDBData("Games", game);
           reloadGameList();
         };
         let duplicateB = document.createElement("BUTTON");
-        duplicateB.innerHTML = "&#x1F4CB;"
+        duplicateB.innerHTML = '<div class="icon icon-files-28"></div>';
         duplicateB.onclick = function(){
           let liClone = li.cloneNode(true);
           li.parentNode.insertBefore(liClone, li);
@@ -75,20 +80,28 @@ function reloadGameList(){ //RELOAD GAME LIST AND BUILD "LI" GAME SLOTS
           }
         };
         let renameB = document.createElement("BUTTON");
-        renameB.innerHTML = "&#x270E;";
+        renameB.innerHTML = '<div class="icon icon-files-47"></div>';
         renameB.onclick = renameGame; //TODO: RENAME FUNCTION
         let downloadB = document.createElement("BUTTON");
-        downloadB.innerHTML = "&#x23ec;";
+        downloadB.innerHTML = '<div class="icon icon-files-40"></div>';
         downloadB.gameId = game.id;
         downloadB.gameName = game.name;
         downloadB.onclick = downloadGame; //TODO: DOWNLOAD JSON FUNCTION (AND IMPORT)
+
+        let openB = document.createElement("BUTTON");
+        openB.classList.add("openGameButton");
+        openB.innerHTML = '<div class="icon icon-interface-48"></div>';
+        openB.gameId = game.id;
+        openB.onclick = openGame;
 
         gameButtons.appendChild(renameB);
         gameButtons.appendChild(duplicateB);
         gameButtons.appendChild(downloadB);
         gameButtons.appendChild(deleteB);
+        li.appendChild(label);
         li.appendChild(gameButtons);
         container.appendChild(li);
+        label.prepend(openB);
       })
     } else {
       container.innerHTML = '<li data-lang="NoGame">'+window.lang[clientLang]["NoGame"]+'</li>'
@@ -153,6 +166,7 @@ function refreshGameSlots(){
 }
 
 function openGame(evt){
+  console.log(evt);
   if(evt.target.gameId){
     window.location.href = "./Game.html#"+evt.target.gameId;
   }

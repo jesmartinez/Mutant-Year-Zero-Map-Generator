@@ -9,8 +9,9 @@ function getJSONGame(){
     try {
       let game = JSON.parse(fileReader.result);
       document.querySelector("#inputImport").style.display = "none";
-      document.querySelector("#importName").style.display = "block";
+      document.querySelector("#importName").disabled = false;
       document.querySelector("#importName").value = game.name;
+      document.querySelector("#importName").focus();
       document.querySelector("#iDelete").style.display = "block";
       window.importGame = game;
     }catch(e){}
@@ -27,7 +28,8 @@ function deleteActualImportGame(){
     console.log("Clear file no compatible");
   }
   document.querySelector("#inputImport").style.display = "block";
-  document.querySelector("#importName").style.display = "none";
+  document.querySelector("#importName").disabled = true;
+  document.querySelector("#importName").value = "";
   document.querySelector("#iDelete").style.display = "none";
 }
 

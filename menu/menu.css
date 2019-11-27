@@ -4,6 +4,7 @@
 }
 *{
   font-family: Arial, Verdana;
+  user-select: none;
 }
 h1,h2,h3,label,legend,button{
   font-family: titulos;
@@ -68,9 +69,11 @@ body{
 .popup input{
   border: none;
   border-bottom: 1px solid black;
+  background-color: transparent;
+  outline-color: transparent;
 }
 .popup > h1{
-  margin: -25px -25px 15px -25px;
+  margin: -25px -25px 25px -25px;
   padding: 15px 15px 15px 15px;
   color: white;
   width: 100%;
@@ -116,9 +119,9 @@ body{
   list-style: none;
   border: 1px solid lightgrey;
   text-align: left;
-  padding: 5px;
+  /* padding: 5px; */
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
 }
 #MainMenu > ul > li > div > button{
@@ -144,8 +147,53 @@ body{
 }
 
 #MainMenu > ul > li {
-    background-color: #00000099;
-    color: #e5e5e5;
-    font-weight: bold;
-    margin: 7px 0;
+  border-radius: 5px 0 0 5px;
+  background-color: #00000099;
+  margin: 7px 0;
+  box-sizing: border-box;
+}
+.gameButtons .icon::before {
+  color: white;
+  margin: 0 5px;
+  font-size: 0.8em;
+}
+.gameButtons button{
+  padding: 7px 0 !important;
+}
+.gameButtons button .icon{
+  pointer-events: none!important;
+}
+.gameLabel .icon::before {
+  color: #eaeaea;
+  margin: auto 10px;
+  display: block;
+}
+
+.gameLabel{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  color: #e5e5e5;
+  font-weight: bold;
+}
+.gameLabel button.openGameButton{
+  height: 100%;
+  background-color: #e0882c !important;
+  margin: -1px;
+  margin-right: 10px;
+  border-radius: 5px 0 0 5px;
+  box-sizing: content-box;
+}
+.gameLabel button.openGameButton:hover{
+  box-shadow: inset 1px 1px 1px #ffffff, inset -1px -1px 1px #ffffff;
+  /* box-shadow: inset 2px 2px 2px #ffffff44, inset -2px -2px 2px #00000044; */
+}
+.gameLabel button.openGameButton .icon{
+  pointer-events: none;
+}
+li[data-lang="NoGame"]{
+  color: #e5e5e5;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 0 !important;
 }
