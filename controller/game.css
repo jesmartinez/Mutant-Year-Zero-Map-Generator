@@ -19,7 +19,20 @@ header{
   display: block;
   width: 100%;
   height: 60px;
-  background-color: black;
+  box-sizing: border-box;
+  padding: 15px 15px;
+  background-image: url("../resources/backgrounds/brownBG.jpg");
+  background-size: cover;
+  color: #e5e5e5;
+}
+header #returnToMenu{
+  background-image: url("../resources/backgrounds/blackBG.jpg");
+  background-size: cover;
+  color: #e5e5e5;
+  border: 1px solid #e5e5e5;
+}
+header #returnToMenu .icon{
+  color: white;
 }
 main{
   position: relative;
@@ -29,6 +42,18 @@ main{
   height: calc(100vh - 60px);
   width: 100vw;
   /* background-color: red; */
+}
+.popBody{
+  background-image: url("../resources/backgrounds/whiteBG.jpg");
+  background-size: cover;
+}
+.popBody > h2[data-lang="EditZone"]{
+  padding: 15px 15px;
+  padding-left: 40px;
+  background-image: url("../resources/backgrounds/brownBG.jpg");
+  background-size: cover;
+  color: #e5e5e5;
+  font-size: 1.4em;
 }
 #map[src=""]{
   display: none;
@@ -73,6 +98,7 @@ canvas{
   overflow-y: auto;
   box-sizing: border-box;
   border: 1px solid black;
+  position: relative;
 }
 .popBody > h2{
   margin: -25px -25px 15px -25px;
@@ -132,6 +158,8 @@ canvas{
   border: 0;
   border-bottom: 1px solid black;
   margin: 8px 0;
+  background-color: transparent;
+  outline-color: transparent;
 }
 .field input[type="checkbox"]{
   position: relative;
@@ -164,15 +192,34 @@ canvas{
   font-family: Arial, Verdana;
   font-size: 12px;
   margin-top: 5px;
+  box-sizing: border-box;
+  background-image: url("../resources/backgrounds/blackBG.jpg");
+  background-size: cover;
+  color: #e5e5e5;
+  border: 1px solid #e5e5e5;
+  padding: 5px 5px;
 }
 #rollTerrain, #rollThreats{
   width: 100%;
 }
 #gameButtons{
+  box-sizing: border-box;
+  height: 60px;
   width: 100%;
+  position: absolute;
+  display: flex;
+  bottom: 0; left: 0; right: 0;
+  background-image: url("../resources/backgrounds/brownBG.jpg");
+  background-size: cover;
+  padding-left: 33px;
 }
 #gameButtons button{
-  margin-right: 8px;
+  box-sizing: border-box;
+  margin: 15px 7px;
+  background-image: url("../resources/backgrounds/blackBG.jpg");
+  background-size: cover;
+  color: #e5e5e5;
+  border: 1px solid #e5e5e5;
 }
 #threatDesc{ margin-top: 0 }
 #threatSelect ~ button, #artifactSelect ~ button {

@@ -107,3 +107,24 @@ function getMousePosition(evt) {
     y: evt.offsetY * squares.height / squares.clientHeight | 0
   };
 }
+
+// let resizeTimeout = undefined;
+// function resizeMap(evt){
+//   try { clearTimeout(resizeTimeout); }catch(e){}
+//   resizeTimeout = setTimeout(function(){
+//     let clientH = document.querySelector("main").clientHeight;
+//     let clientW = document.querySelector("main").clientWidth;
+//     // let aspectRatio = clientW / clientH;
+//     if (clientH > clientW) {
+//       map.style.cssText = `width: ${clientW}px; height: auto`;
+//       // map.style.width = clientW;
+//       // map.style.height = "auto";
+//     } else if (clientH < clientW) {
+//       map.style.cssText = `height: ${clientH}px; width: auto`;
+//       // map.style.height = clientH;
+//       // map.style.width = "auto";
+//     }
+//   },500)
+// }
+//
+// window.onresize = resizeMap;
