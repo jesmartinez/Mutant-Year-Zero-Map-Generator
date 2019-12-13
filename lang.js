@@ -60,6 +60,7 @@ window.lang = {
     RollDice: "Lanzar los dados",
     maps: {
       deadapple: "La Manzana Muerta",
+      bigsmoke: "La Gran Neblina"
     },
     ruinType: {
       basic: "Normal",
@@ -125,6 +126,7 @@ window.lang = {
     RollDice: "Roll the dice",
     maps: {
       deadapple: "Dead Apple",
+      bigsmoke: "The Big Smoke"
     },
     ruinType: {
       basic: "Normal",

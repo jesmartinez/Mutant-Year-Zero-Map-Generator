@@ -223,6 +223,7 @@ function setDefaultContents(){
 
   var defaultMaps = [
     {name: lang[clientLang].maps.deadapple, color: "#000000", cols: "30", opacity: "6", rows: "19", src: "./resources/maps/deadapple.jpg"},
+    {name: lang[clientLang].maps.bigsmoke, color: "#000000", cols: "30", opacity: "6", rows: "19", src: "./resources/maps/bigsmoke.jpg"},
   ];
 
   // mapsStore: null,
