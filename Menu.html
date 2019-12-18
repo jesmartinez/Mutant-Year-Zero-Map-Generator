@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./menu/menu.css">
     <link rel="stylesheet" href="./newGame/newGame.css">
     <link rel="stylesheet" href="./newMap/newMap.css">
+    <link rel="stylesheet" href="./editMapPop/editMap.css">
     <link rel="stylesheet" href="./importGame/importGame.css">
     <link rel="stylesheet" href="./resources/minicons/styles.css">
   </head>
@@ -18,6 +19,7 @@
       </ul>
       <button type="button" name="newGame" data-lang="NewGame" onclick="popup('newGamePop')">New Game</button>
       <button type="button" name="newMap" data-lang="NewMap" onclick="popup('newMapPop')">New Map</button>
+      <button type="button" name="editMap" data-lang="EditMap" onclick="popup('editMapPop')">Import Game</button>
       <button type="button" name="importGame" data-lang="ImportGame" onclick="popup('importGamePop')">Import Game</button>
     </div>
 
@@ -90,7 +92,7 @@
     <!-- RENAME POPUP -->
     <div class="popContainer">
       <div id="renamePop" class="popup">
-        <h1 data-lang="RenameMap">Rename Game</h1>
+        <h1 data-lang="RenameGame">Rename Game</h1>
         <span id="gameToRename"></span>
         <div id="renameInput">
           <br/>
@@ -101,6 +103,43 @@
         </div>
       </div>
     </div>
+
+    <!-- EDIT MAP POPUP -->
+    <div class="popContainer">
+      <div id="editMapPop" class="popup">
+        <h1 data-lang="EditMap">Edit Map</h1>
+        <span id="mapToEdit"></span>
+        <div id="editParams">
+          <div id="MEoptions">
+            <legend data-lang="Options">Options</legend>
+            <label for="MEname" data-lang="Name">Name</label>: <input type="text" name="MEname" id="MEname" value=""><br/>
+            <h3 data-lang="Grid">Grid</h3>
+            <label for="MErows" data-lang="Rows">Rows</label> <input type="number" name="MErows" id="MErows" value="20">
+            <label for="MEcols" data-lang="Columns">Columns</label> <input type="number" name="MEcols" id="MEcols" value="20"><br/><br/>
+            <label for="MEcolor" data-lang="Color">Color</label> <input type="color" name="MEcolor" id="MEcolor" value="#000000">
+            <label for="MEopacity" data-lang="Opacity">Opacity</label> <input type="range" name="MEopacity" id="MEopacity" value="5" min="0" max="100">
+          </div>
+          <div id="previewEditContainer">
+            <img id="previewEditMap" src="" alt="">
+            <canvas id="mapEditGrid"></canvas>
+          </div>
+          <input type="file" name="map" id="inputEditMap" value="" onchange="getCustomMap()">
+          <button id="MEdelete" onclick="deleteActualMap();" data-lang="ChangeImage">Change image</button>
+          <div id="MEButtonsBar">
+            <button id="MESave" onclick="saveEditOption();" data-lang="Save">Save</button>
+            <button id="MECancel" onclick="cancelEditOption();" data-lang="Cancel">Cancel</button>
+          </div>
+        </div>
+        <ul id="editMapList">
+
+        </ul>
+        <div class="buttonsFix"> </div>
+        <div class="buttonsBar">
+          <button name="close-pop" onclick="closePop();" data-lang="Cancel">Cancel</button>
+          <label id="import-notice"></label>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="./lang.js" charset="utf-8"></script>
   <script src="./indexedDB/db.js" charset="utf-8"></script>
@@ -108,5 +147,6 @@
   <script src="./menu/menu.js" charset="utf-8"></script>
   <script src="./newGame/newGame.js" charset="utf-8"></script>
   <script src="./newMap/newMap.js" charset="utf-8"></script>
+  <script src="./editMapPop/editMap.js" charset="utf-8"></script>
   <script src="./importGame/importGame.js" charset="utf-8"></script>
 </html>

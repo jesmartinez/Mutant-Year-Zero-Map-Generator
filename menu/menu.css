@@ -137,14 +137,14 @@ body{
   color: #e5e5e5;
   border-color: #e5e5e5;
 }
-#MainMenu > button:first-of-type {
+/* #MainMenu > button:first-of-type {
   margin-left: 25px;
   width: calc(33.33% - 50px);
 }
 #MainMenu > button:last-of-type {
   margin-right: 25px;
   width: calc(33.33% - 50px);
-}
+} */
 
 #MainMenu > ul > li {
   border-radius: 5px 0 0 5px;

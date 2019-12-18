@@ -15,6 +15,7 @@ function initCanvas(){
   gridLines.rows.unshift(0);
   gridLines.cols.unshift(0);
   paintExplored();
+  resizeMap();
 }
 
 function setImgAndGrid(){
@@ -115,14 +116,23 @@ function resizeMap(evt){
     let clientH = document.querySelector("main").clientHeight;
     // let clientW = document.querySelector("main").clientWidth;
     let map = document.querySelector("#map")
+    let grid = document.querySelector("#grid")
+    let squares = document.querySelector("#squares")
+    let visitedAreas = document.querySelector("#visitedAreas")
     let aspectRatio = map.naturalWidth / map.naturalHeight;
     let expectedW = clientH * aspectRatio;
-    if (clientH > clientW) {
-      map.style.cssText = `width: ${clientW}px; height: auto`;
+    if (clientH > expectedW) {
+      map.style.cssText = `width: ${expectedW}px; height: auto`;
+      grid.style.cssText = `width: ${expectedW}px; height: auto`;
+      squares.style.cssText = `width: ${expectedW}px; height: auto`;
+      visitedAreas.style.cssText = `width: ${expectedW}px; height: auto`;
       // map.style.width = clientW;
       // map.style.height = "auto";
-    } else if (clientH < clientW) {
+    } else if (clientH <= expectedW) {
       map.style.cssText = `height: ${clientH}px; width: auto`;
+      grid.style.cssText = `height: ${clientH}px; width: auto`;
+      squares.style.cssText = `height: ${clientH}px; width: auto`;
+      visitedAreas.style.cssText = `height: ${clientH}px; width: auto`;
       // map.style.height = clientH;
       // map.style.width = "auto";
     }
